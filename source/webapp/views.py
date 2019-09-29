@@ -81,3 +81,61 @@ class TaskDeleteView(View):
         task = get_object_or_404(Task, pk=kwargs.get('pk'))
         task.delete()
         return redirect('index')
+
+class TypeView(TemplateView):
+    template_name = 'type.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['types'] = Type.objects.all()
+        return context
+
+
+class TypeCreateView(View):
+    def get(self, request, *args, **kwargs):
+        form = TypeForm()
+        return render(request, 'type_create.html', context={
+            'form': form
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = TypeForm(data=request.POST)
+        if form.is_valid():
+            Type.objects.create(
+                type=form.cleaned_data['type'],
+            )
+            return redirect('type')
+        else:
+            return render(request, 'type_create.html', context={
+                'form': form
+            })
+
+
+class TypeUpdateView(View):
+    def get(self, request, *args, **kwargs):
+        type = get_object_or_404(Type, pk=kwargs.get('pk'))
+        form = TypeForm(data={
+            'type': type.type
+        })
+        return render(request, 'type_update.html', context={'form': form, 'type': type})
+
+    def post(self, request,  *args, **kwargs):
+        type = get_object_or_404(Type, pk=kwargs.get('pk'))
+        form = TypeForm(data=request.POST)
+        if form.is_valid():
+            type.type = form.cleaned_data['type']
+            type.save()
+            return redirect('type')
+        else:
+            return render(request, 'type_update.html', context={'form': form, 'type': type})
+
+
+class TypeDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        type = get_object_or_404(Type, pk=kwargs.get('pk'))
+        return render(request, 'type_delete.html', {'type': type})
+
+    def post(self, request,  *args, **kwargs):
+        type = get_object_or_404(Type, pk=kwargs.get('pk'))
+        type.delete()
+        return redirect('type')
