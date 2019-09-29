@@ -12,8 +12,8 @@ class TaskForm(forms.Form):
 
 
 class StatusForm(forms.Form):
-    status = forms.CharField(max_length=50, label=None)
+    status = forms.CharField(max_length=50, label='Статус задачи')
 
 
 class TypeForm(forms.Form):
-    type = forms.CharField(max_length=50, label=None)
+    type = forms.CharField(max_length=50, label='Тип задачи')

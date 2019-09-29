@@ -7,7 +7,6 @@ from django.views.generic import View, TemplateView
 
 class IndexView(TemplateView):
     template_name = 'index.html'
-    # extra_context = {'tasks':Task.objects.all()}
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,7 +24,7 @@ class TaskView(TemplateView):
         return  context
 
 
-class TaskCreateView(TemplateView):
+class TaskCreateView(View):
     def get(self, request, *args, **kwargs):
         form = TaskForm()
         return render(request, 'create.html', context={

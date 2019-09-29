@@ -3,12 +3,16 @@
 {% block title %}{{ task.title }}{% endblock %}
 
 {% block menu %}
-{#    <li><a href="{% url "article_update" article.pk %}">Edit</a></li>#}
-{#    <li><a href="{% url "article_delete" article.pk %}">Delete</a></li>#}
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'index' %}">НА ГЛАВНУЮ</a>
+        <a href="{% url 'task_update' task.pk %}" class="navbar-brand">РЕДАКТИРОВАТЬ</a>
+        <a href="{% url "task_delete" task.pk %}" class="navbar-brand">УДАЛИТЬ</a>
+    </nav>
 {% endblock %}
 
 {% block content %}
-    <h1>{{ task.title }}</h1>
-    <p>Created at <b>{{ task.created_at }}</b></p>
-    <div class="pre">{{ task.text }}</div>
+    <h1 class="mb-5">{{ task.title }}</h1>
+    <p class="text-center">Created at <b>{{ task.created_at }}</b></p>
+    <p class="pre text-center">{{ task.text }}</p>
+
 {% endblock %}
