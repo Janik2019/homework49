@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Task(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Заголовок')
     text = models.TextField(max_length=3000,null=True, blank=True, verbose_name='Описание' )
