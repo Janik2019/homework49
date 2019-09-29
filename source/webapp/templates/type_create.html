@@ -15,7 +15,7 @@
     <h1>СОЗДАТЬ ТИП</h1>
     <form method="POST" action="{% url 'type_add' %}" class="text-center">
         {% csrf_token %}
-        <p>{{ form.type|add_class:"form-control"   }}</p>
+        <p>{{ form.type|add_class:"form-control" }}</p>
         <input type="submit" value="СОЗДАТЬ" class="btn btn-success">
     </form>
 {% endblock %}

@@ -3,8 +3,9 @@
 {% block title %}РЕДАКТИРОВАТЬ ТИП{% endblock %}
 {% block menu %}
     <nav class="navbar navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="{% url 'index' %}">НА ГЛАВНУЮ</a>
-{#        <a href="{% url "task_delete" task.pk %}" class="navbar-brand">УДАЛИТЬ</a>#}
+{#        <a class="navbar-brand" href="{% url 'index' %}">НА ГЛАВНУЮ</a>#}
+        <a class="navbar-brand" href="{% url 'type' %}">ТИПЫ ЗАДАЧ</a>
+        <a href="{% url "type_delete" type.pk %}" class="navbar-brand">УДАЛИТЬ</a>
     </nav>
 {% endblock %}
 {% block content %}

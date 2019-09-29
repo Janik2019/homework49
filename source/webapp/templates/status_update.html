@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}РЕДАКТИРОВАТЬ СТАТУС{% endblock %}
+{% block menu %}
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'status' %}">СТАТУСЫ ЗАДАЧ</a>
+        <a href="{% url "status_delete" status.pk %}" class="navbar-brand">УДАЛИТЬ</a>
+    </nav>
+{% endblock %}
+{% block content %}
+    <h1>РЕДАКТИРОВАТЬ СТАТУС</h1>
+    <form method="POST" action="{% url "status_update" status.pk %}">
+        {% csrf_token %}
+        <p>{{ form.status|add_class:"form-control" }}</p>
+        <input type="submit" value="РЕДАКТИРОВАТЬ" class="btn btn-dark">
+    </form>
+{% endblock %}

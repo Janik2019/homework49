@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'index' %}">НА ГЛАВНУЮ</a>
+        <a class="navbar-brand" href="{% url 'status_add' %}">СОЗДАТЬ СТАТУС</a>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-3">СТАТУСЫ ЗАДАЧ:</h1>
+    {% for status in statuses %}
+        <div class="card mb-5">
+            <div class="card-body">
+                <h2 class="card-title">{{ status.status }}</h2>
+                <a href="{% url 'status_update' status.pk %}" class="btn btn-dark">РЕДАКТИРОВАТЬ</a>
+                <a href="{% url "status_delete" status.pk %}" class="btn btn-dark">УДАЛИТЬ</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

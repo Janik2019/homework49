@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}СОЗДАТЬ СТАТУС{% endblock %}
+
+
+{% block menu %}
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+{#        <a class="navbar-brand" href="{% url 'index' %}">НА ГЛАВНУЮ</a>#}
+        <a class="navbar-brand" href="{% url 'status' %}">СТАТУСЫ ЗАДАЧ</a>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+    <h1>СОЗДАТЬ ТИП</h1>
+    <form method="POST" action="{% url 'status_add' %}" class="text-center">
+        {% csrf_token %}
+        <p>{{ form.status|add_class:"form-control" }}</p>
+        <input type="submit" value="СОЗДАТЬ" class="btn btn-success">
+    </form>
+{% endblock %}
