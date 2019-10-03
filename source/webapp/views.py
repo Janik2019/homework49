@@ -3,27 +3,30 @@ from webapp.forms import TaskForm, StatusForm, TypeForm
 
 from webapp.models import Task, Type, Status
 
-from django.views.generic import View, TemplateView
+from django.views.generic import View, TemplateView, ListView
 
 # БАЗОВЫЕ КОНТРОЛЛЕРЫ
 
-class IndexView(TemplateView):
+
+class IndexView(ListView):
     template_name = 'index.html'
+    context_object_name = 'tasks'
+    model = Task
+    ordering = '-created_at'
+    # paginate_by = 4
+    # paginate_orphans = 1
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['tasks'] = Task.objects.all()
-        return context
 
-
-class TaskView(TemplateView):
+class TaskView(ListView):
     template_name = 'task.html'
+    context_object_name = 'types'
+    model = Type
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        task_pk = kwargs.get('pk')
-        context['task'] = get_object_or_404(Task, pk=task_pk)
-        return  context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     task_pk = kwargs.get('pk')
+    #     context['task'] = get_object_or_404(Task, pk=task_pk)
+    #     return  context
 
 
 class TaskCreateView(View):
@@ -149,13 +152,10 @@ class TypeDeleteView(View):
 # КОНТРОЛЛЕРЫ ДЛЯ ВЫВОДА СТАТУСОВ
 
 
-class StatusView(TemplateView):
+class StatusView(ListView):
     template_name = 'status.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['statuses'] = Status.objects.all()
-        return context
+    context_object_name = 'statuses'
+    model = Status
 
 
 class StatusCreateView(View):
