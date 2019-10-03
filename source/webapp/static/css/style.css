@@ -69,3 +69,33 @@ h1 {
    border: solid 1px red;
    box-shadow: red 0 0 3px;
 }
+
+
+/*Pagination styles*/
+.pagination {
+   text-align: center;
+}
+
+.pagination a, .pagination .page-disabled {
+   display: inline-block;
+   border: solid 1px black;
+   border-radius: 3px;
+   padding: 5px;
+   margin: 3px;
+   text-decoration: none;
+}
+
+.pagination a {
+   background: #343a40;
+   color: white;
+}
+
+.pagination a:hover {
+   background: black;
+}
+
+.pagination .page-disabled {
+   background: #343a40;
+   color: #dddddd
+}
+

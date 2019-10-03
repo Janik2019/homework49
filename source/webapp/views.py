@@ -13,8 +13,8 @@ class IndexView(ListView):
     context_object_name = 'tasks'
     model = Task
     ordering = '-created_at'
-    # paginate_by = 4
-    # paginate_orphans = 1
+    paginate_by = 5
+    paginate_orphans = 1
 
 
 class TaskView(ListView):
