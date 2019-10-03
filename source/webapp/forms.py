@@ -7,8 +7,8 @@ class TaskForm(forms.Form):
 
     title = forms.CharField(max_length=40, label='Заголовок', required=True)
     text = forms.CharField(max_length=3000, label='Описание', required=False, widget=widgets.Textarea)
-    status = forms.ModelChoiceField(queryset=Status.objects.all(), label='Статус задачи')
-    type = forms.ModelChoiceField(queryset=Type.objects.all(), label='Тип задачи')
+    status = forms.ModelChoiceField(queryset=Status.objects.all(), label='Статус задачи', to_field_name='status')
+    type = forms.ModelChoiceField(queryset=Type.objects.all(), label='Тип задачи', to_field_name='type')
 
 
 class StatusForm(forms.Form):
