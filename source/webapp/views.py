@@ -5,6 +5,9 @@ from webapp.models import Task, Type, Status
 
 from django.views.generic import View, TemplateView, ListView
 
+
+from .base_views import DetailView
+
 # БАЗОВЫЕ КОНТРОЛЛЕРЫ
 
 
@@ -17,16 +20,10 @@ class IndexView(ListView):
     paginate_orphans = 1
 
 
-class TaskView(ListView):
+class TaskView(DetailView):
     template_name = 'task.html'
-    context_object_name = 'types'
-    model = Type
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     task_pk = kwargs.get('pk')
-    #     context['task'] = get_object_or_404(Task, pk=task_pk)
-    #     return  context
+    model = Task
+    context_key = 'task'
 
 
 class TaskCreateView(View):
@@ -90,13 +87,18 @@ class TaskDeleteView(View):
 
 # Контроллеры для вывода ТИПОВ
 
-class TypeView(TemplateView):
-    template_name = 'type.html'
+# class TypeView(TemplateView):
+#     template_name = 'type.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['types'] = Type.objects.all()
+#         return context
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['types'] = Type.objects.all()
-        return context
+class TypeView(ListView):
+    template_name = 'type.html'
+    context_object_name = 'types'
+    model = Type
 
 
 class TypeCreateView(View):

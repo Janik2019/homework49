@@ -6,7 +6,7 @@ from webapp.models import Status, Type, Task
 class TaskForm(forms.Form):
 
     title = forms.CharField(max_length=40, label='Заголовок', required=True)
-    text = forms.CharField(max_length=3000, label='Описание', required=True, widget=widgets.Textarea)
+    text = forms.CharField(max_length=3000, label='Описание', required=False, widget=widgets.Textarea)
     status = forms.ModelChoiceField(queryset=Status.objects.all(), label='Статус задачи')
     type = forms.ModelChoiceField(queryset=Type.objects.all(), label='Тип задачи')
 
