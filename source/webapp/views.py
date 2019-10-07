@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from webapp.forms import TaskForm, StatusForm, TypeForm
-
+from django.urls import reverse
 from webapp.models import Task, Type, Status
 
-from django.views.generic import View, TemplateView, ListView
+from django.views.generic import View, TemplateView, ListView,CreateView
 
 
 from .base_views import DetailView
@@ -26,27 +26,13 @@ class TaskView(DetailView):
     context_key = 'task'
 
 
-class TaskCreateView(View):
-    def get(self, request, *args, **kwargs):
-        form = TaskForm()
-        return render(request, 'create.html', context={
-            'form': form
-        })
+class TaskCreateView(CreateView):
+    template_name = 'create.html'
+    model = Task
+    form_class = TaskForm
 
-    def post(self, request, *args, **kwargs):
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-            Task.objects.create(
-                title=form.cleaned_data['title'],
-                text=form.cleaned_data['text'],
-                status=form.cleaned_data['status'],
-                type=form.cleaned_data['type']
-            )
-            return redirect('index')
-        else:
-            return render(request, 'create.html', context={
-                'form': form
-            })
+    def get_success_url(self):
+        return reverse('index')
 
 
 class TaskUpdateView(View):
@@ -87,38 +73,19 @@ class TaskDeleteView(View):
 
 # Контроллеры для вывода ТИПОВ
 
-# class TypeView(TemplateView):
-#     template_name = 'type.html'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['types'] = Type.objects.all()
-#         return context
-
 class TypeView(ListView):
     template_name = 'type.html'
     context_object_name = 'types'
     model = Type
 
 
-class TypeCreateView(View):
-    def get(self, request, *args, **kwargs):
-        form = TypeForm()
-        return render(request, 'type_create.html', context={
-            'form': form
-        })
+class TypeCreateView(CreateView):
+    template_name = 'type_create.html'
+    model = Type
+    form_class = TypeForm
 
-    def post(self, request, *args, **kwargs):
-        form = TypeForm(data=request.POST)
-        if form.is_valid():
-            Type.objects.create(
-                type=form.cleaned_data['type'],
-            )
-            return redirect('type')
-        else:
-            return render(request, 'type_create.html', context={
-                'form': form
-            })
+    def get_success_url(self):
+        return reverse('type')
 
 
 class TypeUpdateView(View):
@@ -160,24 +127,14 @@ class StatusView(ListView):
     model = Status
 
 
-class StatusCreateView(View):
-    def get(self, request, *args, **kwargs):
-        form = StatusForm()
-        return render(request, 'status_create.html', context={
-            'form': form
-        })
+class StatusCreateView(CreateView):
+    template_name = 'status_create.html'
+    model = Status
+    form_class = StatusForm
 
-    def post(self, request, *args, **kwargs):
-        form = StatusForm(data=request.POST)
-        if form.is_valid():
-            Status.objects.create(
-                status=form.cleaned_data['status'],
-            )
-            return redirect('status')
-        else:
-            return render(request, 'status_create.html', context={
-                'form': form
-            })
+    def get_success_url(self):
+        return reverse('status')
+
 
 
 class StatusUpdateView(View):
