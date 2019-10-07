@@ -52,3 +52,28 @@ class UpdateView(View):
 
     def form_invalid(self, form):
         return render(self.request, self.template_name, context={'form': form})
+
+
+class DeleteView(View):
+    form_class = None
+    template_name = None
+    redirect_url = ''
+    model = None
+    # pk_url = 'pk'
+    context_object_name = None
+
+    def get(self, request, *args, **kwargs):
+        # task = get_object_or_404(self.model, pk=self.pk_url)
+        self.obj = get_object_or_404(self.model, pk=kwargs.get('pk'))
+        return render(request, self.template_name, {self.context_object_name: self.obj})
+
+
+    def post(self, request,  *args, **kwargs):
+        self.obj =get_object_or_404(self.model, pk=kwargs.get('pk'))
+        self.obj.delete()
+        return redirect(self.redirect_url)
+
+
+    def get_redirect_url(self):
+        return self.redirect_url
+

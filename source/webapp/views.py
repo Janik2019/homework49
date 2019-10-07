@@ -6,7 +6,7 @@ from webapp.models import Task, Type, Status
 from django.views.generic import View, TemplateView, ListView,CreateView
 
 
-from .base_views import DetailView, UpdateView
+from .base_views import DetailView, UpdateView, DeleteView
 
 # БАЗОВЫЕ КОНТРОЛЛЕРЫ
 
@@ -72,16 +72,12 @@ class TaskUpdateView(UpdateView):
 #             return render(request, 'update.html', context={'form': form, 'task': task})
 
 
-class TaskDeleteView(View):
-    def get(self, request, *args, **kwargs):
-        task = get_object_or_404(Task, pk=kwargs.get('pk'))
-        return render(request, 'delete.html', {'task': task})
-
-    def post(self, request,  *args, **kwargs):
-        task = get_object_or_404(Task, pk=kwargs.get('pk'))
-        task.delete()
-        return redirect('index')
-
+class TaskDeleteView(DeleteView):
+    form_class = TaskForm
+    template_name = 'delete.html'
+    redirect_url = 'index'
+    model = Task
+    context_object_name = 'task'
 
 # Контроллеры для вывода ТИПОВ
 
@@ -108,33 +104,13 @@ class TypeUpdateView(UpdateView):
     context_object_name = 'type'
 
 
-    # def get(self, request, *args, **kwargs):
-    #     type = get_object_or_404(Type, pk=kwargs.get('pk'))
-    #     form = TypeForm(data={
-    #         'type': type.type
-    #     })
-    #     return render(request, 'type_update.html', context={'form': form, 'type': type})
-    #
-    # def post(self, request,  *args, **kwargs):
-    #     type = get_object_or_404(Type, pk=kwargs.get('pk'))
-    #     form = TypeForm(data=request.POST)
-    #     if form.is_valid():
-    #         type.type = form.cleaned_data['type']
-    #         type.save()
-    #         return redirect('type')
-    #     else:
-    #         return render(request, 'type_update.html', context={'form': form, 'type': type})
 
-
-class TypeDeleteView(View):
-    def get(self, request, *args, **kwargs):
-        type = get_object_or_404(Type, pk=kwargs.get('pk'))
-        return render(request, 'type_delete.html', {'type': type})
-
-    def post(self, request,  *args, **kwargs):
-        type = get_object_or_404(Type, pk=kwargs.get('pk'))
-        type.delete()
-        return redirect('type')
+class TypeDeleteView(DeleteView):
+    form_class = TypeForm
+    template_name = 'type_delete.html'
+    redirect_url = 'type'
+    model = Type
+    context_object_name = 'type'
 
 
 # КОНТРОЛЛЕРЫ ДЛЯ ВЫВОДА СТАТУСОВ
@@ -182,11 +158,8 @@ class StatusUpdateView(UpdateView):
 
 
 class StatusDeleteView(View):
-    def get(self, request, *args, **kwargs):
-        status = get_object_or_404(Status, pk=kwargs.get('pk'))
-        return render(request, 'status_delete.html', {'status': status})
-
-    def post(self, request,  *args, **kwargs):
-        status = get_object_or_404(Status, pk=kwargs.get('pk'))
-        status.delete()
-        return redirect('status')
+    form_class = StatusForm
+    template_name = 'status_delete.html'
+    redirect_url = 'status'
+    model = Status
+    context_object_name = 'status'
