@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}УДАЛИТЬ ТИП{% endblock %}
+
+{% block menu %}
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'project' %}">Перейти на страницу проектов</a>
+        <a href="{% url 'project_update' project.pk %}" class="navbar-brand">РЕДАКТИРОВАТЬ</a>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+    <h1>ВЫ УВЕРЕНЫ ЧТО ХОТИТЕ УДАЛИТЬ ПРОЕКТ: {{ project }}?</h1>
+    <form method="POST" action="{% url 'project_delete' project.pk %}" class="text-center">
+        {% csrf_token %}
+        <p><input type="submit" value="УДАЛИТЬ" class="btn btn-danger"></p>
+        <p><a href="{% url 'type' %}" class="btn btn-dark">ОТМЕНА</a></p>
+    </form>
+{% endblock %}

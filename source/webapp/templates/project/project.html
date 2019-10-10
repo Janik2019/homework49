@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'index' %}">НА ГЛАВНУЮ</a>
+        <a class="navbar-brand" href="{% url 'project_add' %}">СОЗДАТЬ ПРОЕКТ</a>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-3">СПИСОК ПРОЕКТОВ:</h1>
+    {% for project in projects %}
+        <div class="card mb-5">
+            <div class="card-body">
+                <h2 class="card-title">{{ project.project }}</h2>
+                 <a href="{% url 'project_view' project.pk %}" class="btn btn-dark">ПРОСМОТР</a>
+                <a href="{% url 'project_update' project.pk %}" class="btn btn-dark">РЕДАКТИРОВАТЬ</a>
+                <a href="{% url 'project_delete' project.pk %}" class="btn btn-dark">УДАЛИТЬ</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
