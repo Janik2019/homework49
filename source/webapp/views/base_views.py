@@ -13,14 +13,6 @@ class DetailView(TemplateView):
         context[self.context_key] = get_object_or_404(self.model, pk=pk)
         return context
 
-# class UpdateView(View):
-#     form_classs = None
-#     template_name = None
-#     model = None
-#     redirect_url = None
-#
-#     def get(self,re):
-
 class UpdateView(View):
     form_class = None
     template_name = None
@@ -59,11 +51,9 @@ class DeleteView(View):
     template_name = None
     redirect_url = ''
     model = None
-    # pk_url = 'pk'
     context_object_name = None
 
     def get(self, request, *args, **kwargs):
-        # task = get_object_or_404(self.model, pk=self.pk_url)
         self.obj = get_object_or_404(self.model, pk=kwargs.get('pk'))
         return render(request, self.template_name, {self.context_object_name: self.obj})
 
