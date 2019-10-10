@@ -1,6 +1,5 @@
 from django import forms
-from django.forms import widgets
-from webapp.models import Status, Type, Task
+from webapp.models import Status, Type, Task, Project
 
 
 class TaskForm(forms.ModelForm):
@@ -19,3 +18,9 @@ class StatusForm(forms.ModelForm):
     class Meta:
         model = Status
         fields = ['status']
+
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['project', 'description']
