@@ -1,11 +1,9 @@
 from webapp.forms import TypeForm
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from webapp.models import Type
 
-from django.views.generic import View, TemplateView, ListView,CreateView
+from django.views.generic import ListView,CreateView, UpdateView, DeleteView
 
-
-from .base_views import DetailView, UpdateView, DeleteView
 
 
 
@@ -27,7 +25,7 @@ class TypeCreateView(CreateView):
 class TypeUpdateView(UpdateView):
     template_name = 'type/type_update.html'
     form_class = TypeForm
-    redirect_url = 'type'
+    success_url = reverse_lazy('type')
     model = Type
     context_object_name = 'type'
 
@@ -36,6 +34,6 @@ class TypeUpdateView(UpdateView):
 class TypeDeleteView(DeleteView):
     form_class = TypeForm
     template_name = 'type/type_delete.html'
-    redirect_url = 'type'
+    success_url = reverse_lazy('type')
     model = Type
     context_object_name = 'type'
