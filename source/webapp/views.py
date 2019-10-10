@@ -12,7 +12,7 @@ from .base_views import DetailView, UpdateView, DeleteView
 
 
 class IndexView(ListView):
-    template_name = 'index.html'
+    template_name = 'tracker/index.html'
     context_object_name = 'tasks'
     model = Task
     ordering = '-created_at'
@@ -28,7 +28,7 @@ class TaskView(DetailView):
 
 class TaskCreateView(CreateView):
     model = Task
-    template_name = 'create.html'
+    template_name = 'tracker/create.html'
     form_class = TaskForm
 
     def get_success_url(self):
