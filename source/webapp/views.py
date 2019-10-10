@@ -21,7 +21,7 @@ class IndexView(ListView):
 
 
 class TaskView(DetailView):
-    template_name = 'task.html'
+    template_name = 'tracker/task.html'
     model = Task
     context_key = 'task'
 
@@ -82,14 +82,14 @@ class TaskDeleteView(DeleteView):
 # Контроллеры для вывода ТИПОВ
 
 class TypeView(ListView):
-    template_name = 'type.html'
+    template_name = 'type/type.html'
     context_object_name = 'types'
     model = Type
 
 
 class TypeCreateView(CreateView):
     model = Type
-    template_name = 'type_create.html'
+    template_name = 'type/type_create.html'
     form_class = TypeForm
 
     def get_success_url(self):
@@ -117,14 +117,14 @@ class TypeDeleteView(DeleteView):
 
 
 class StatusView(ListView):
-    template_name = 'status.html'
+    template_name = 'status/status.html'
     context_object_name = 'statuses'
     model = Status
 
 
 class StatusCreateView(CreateView):
     model = Status
-    template_name = 'status_create.html'
+    template_name = 'status/status_create.html'
     form_class = StatusForm
 
     def get_success_url(self):
