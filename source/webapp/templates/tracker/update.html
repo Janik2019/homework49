@@ -8,8 +8,8 @@
     </nav>
 {% endblock %}
 {% block content %}
-    <h1>Update Task</h1>
+    <h1>РЕДАКТИРОВАТЬ ЗАДАЧУ</h1>
     <form method="POST" action="{% url "task_update" task.pk %}">
-        {% include 'partial/task_form.html' with button_text="Update" %}
+        {% include 'partial/task_form.html' with button_text="РЕДАКТИРОВАТЬ" %}
     </form>
 {% endblock %}

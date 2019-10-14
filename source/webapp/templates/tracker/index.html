@@ -11,6 +11,7 @@
 
 {% block content %}
     <h1 class="mb-3">Задачи:</h1>
+    {% include 'partial/search_form.html' %}
     {% for task in tasks %}
         <div class="card mb-5">
             <div class="card-body">

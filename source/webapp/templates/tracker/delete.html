@@ -12,7 +12,7 @@
 
 
 {% block content %}
-    <h1>Are you sure want to delete task {{ task }}?</h1>
+    <h1>Вы уверены, что хотите удалить задачу  {{ task }}?</h1>
     <form method="POST" action="{% url 'task_delete' task.pk %}" class="text-center">
         {% csrf_token %}
         <p><input type="submit" value="ПОДТВЕРДИТЬ" class="btn btn-danger"></p>
