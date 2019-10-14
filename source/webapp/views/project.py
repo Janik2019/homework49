@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.utils.http import urlencode
 
 
-class IndexView(ListView):
+class ProjectIndex(ListView):
     template_name = 'project/project.html'
     context_object_name = 'projects'
     model = Project
@@ -16,12 +16,14 @@ class IndexView(ListView):
 
     def get(self, request, *args, **kwargs):
         self.form = self.get_search_form()
+        print(self.get_search_form())
         self.search_value = self.get_search_value()
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
         context['form'] = self.form
+        print(self.form)
         if self.search_value:
             context['query'] = urlencode({'search': self.search_value})
         return context
@@ -41,12 +43,6 @@ class IndexView(ListView):
             return self.form.cleaned_data['search']
         return None
 
-
-class ProjectIndex(ListView):
-    template_name = 'project/project.html'
-    context_object_name = 'projects'
-    model = Project
-    ordering = 'created_at'
 
 
 class ProjectView(DetailView):

@@ -8,11 +8,12 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'partial/search_form.html' %}
+
 {#    {% if is_paginated %}#}
 {#            {% include 'partial/pagination.html' %}#}
 {#    {% endif %}#}
     <h1 class="mb-3">СПИСОК ПРОЕКТОВ:</h1>
+    {% include 'partial/search_form.html' %}
     {% for project in projects %}
         <div class="card mb-5">
             <div class="card-body">
