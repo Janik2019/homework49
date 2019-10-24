@@ -7,6 +7,8 @@ from webapp.models import Project
 from django.db.models import Q
 from django.utils.http import urlencode
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 class ProjectIndex(ListView):
     template_name = 'project/project.html'
@@ -56,7 +58,7 @@ class ProjectView(DetailView):
         return context
 
 
-class ProjectCreateView(CreateView):
+class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'project/project_create.html'
     form_class = ProjectForm
@@ -65,7 +67,7 @@ class ProjectCreateView(CreateView):
         return reverse('project_view', kwargs={'pk': self.object.pk})
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'project/project_update.html'
     model = Project
     form_class = ProjectForm
@@ -75,7 +77,7 @@ class ProjectUpdateView(UpdateView):
         return reverse('project_view', kwargs={'pk': self.object.pk})
 
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'project/project_delete.html'
     success_url = reverse_lazy('project')
     model = Project
