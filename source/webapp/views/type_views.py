@@ -3,6 +3,7 @@ from django.urls import reverse, reverse_lazy
 from webapp.models import Type
 
 from django.views.generic import ListView,CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class TypeView(ListView):
@@ -11,7 +12,7 @@ class TypeView(ListView):
     model = Type
 
 
-class TypeCreateView(CreateView):
+class TypeCreateView(LoginRequiredMixin, CreateView):
     model = Type
     template_name = 'type/type_create.html'
     form_class = TypeForm
@@ -20,7 +21,7 @@ class TypeCreateView(CreateView):
         return reverse('type')
 
 
-class TypeUpdateView(UpdateView):
+class TypeUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'type/type_update.html'
     form_class = TypeForm
     success_url = reverse_lazy('type')
@@ -28,7 +29,7 @@ class TypeUpdateView(UpdateView):
     context_object_name = 'type'
 
 
-class TypeDeleteView(DeleteView):
+class TypeDeleteView(LoginRequiredMixin, DeleteView):
     form_class = TypeForm
     template_name = 'type/type_delete.html'
     success_url = reverse_lazy('type')
