@@ -3,7 +3,7 @@
 <form class="form-inline mb-5" action="" method="GET">
     <label for="{{ form.search.id_for_label }}" class="mr-2">{{ form.search.label }}:</label>
     {{ form.search|add_class:'form-control' }}
-    <input type="submit" value="Поиск" class="btn btn-success">
+    <input type="submit" value="Поиск" class="ml-1 btn btn-dark">
     {% for error in form.search.errors %}
         <p class="form-error">{{ error }}</p>
     {% endfor %}
