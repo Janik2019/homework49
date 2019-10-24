@@ -44,7 +44,6 @@ class ProjectIndex(ListView):
         return None
 
 
-
 class ProjectView(DetailView):
     template_name = 'project/project_view.html'
     model = Project
@@ -64,7 +63,6 @@ class ProjectCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('project_view', kwargs={'pk': self.object.pk})
-
 
 
 class ProjectUpdateView(UpdateView):

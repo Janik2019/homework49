@@ -5,8 +5,6 @@ from webapp.models import Type
 from django.views.generic import ListView,CreateView, UpdateView, DeleteView
 
 
-
-
 class TypeView(ListView):
     template_name = 'type/type.html'
     context_object_name = 'types'
@@ -28,7 +26,6 @@ class TypeUpdateView(UpdateView):
     success_url = reverse_lazy('type')
     model = Type
     context_object_name = 'type'
-
 
 
 class TypeDeleteView(DeleteView):

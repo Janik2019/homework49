@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from webapp.forms import TaskForm, SimpleSearchForm
 from django.urls import reverse
 from webapp.models import Task
@@ -51,7 +53,7 @@ class TaskView(DetailView):
     context_key = 'task'
 
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     template_name = 'tracker/create.html'
     form_class = TaskForm
@@ -60,7 +62,7 @@ class TaskCreateView(CreateView):
         return reverse('index')
 
 
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin,UpdateView):
     model = Task
     template_name = 'tracker/update.html'
     form_class = TaskForm
@@ -70,8 +72,7 @@ class TaskUpdateView(UpdateView):
         return reverse('task_view',kwargs={'pk': self.object.pk})
 
 
-
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(LoginRequiredMixin,DeleteView):
     template_name = 'tracker/delete.html'
     success_url = reverse_lazy('index')
     model = Task
