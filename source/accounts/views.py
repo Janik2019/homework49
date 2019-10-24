@@ -6,6 +6,8 @@ from django.shortcuts import render, redirect
 
 def login_view(request):
     context = {}
+    page_url = request.GET.get('next')
+    next_page = request.session.setdefault('next_page', page_url)
 
     if request.method == 'POST':
 
@@ -19,7 +21,7 @@ def login_view(request):
 
             login(request, user)
 
-            return redirect('index')
+            return redirect(next_page)
 
         else:
 
