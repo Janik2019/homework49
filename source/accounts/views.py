@@ -6,25 +6,19 @@ from django.shortcuts import render, redirect
 
 def login_view(request):
     context = {}
-    page_url = request.GET.get('next')
-    next_page = request.session.setdefault('next_page', page_url)
-
+    next = request.GET.get('next')
+    request_page = request.session.setdefault('request_page', next)
+    print(next)
     if request.method == 'POST':
 
         username = request.POST.get('username')
 
         password = request.POST.get('password')
-
         user = authenticate(request, username=username, password=password)
-
         if user is not None:
-
             login(request, user)
-
-            return redirect(next_page)
-
+            return redirect(request_page)
         else:
-
             context['has_error'] = True
 
     return render(request, 'login.html', context=context)
