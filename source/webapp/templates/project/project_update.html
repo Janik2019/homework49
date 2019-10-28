@@ -10,7 +10,7 @@
 {% endblock %}
 {% block content %}
     <h1>РЕДАКТИРОВАТЬ ПРОЕКТ</h1>
-    <form method="POST" action="{% url "project_update" project.pk %}">
+    <form method="POST" action="{% url "webapp:project_update" project.pk %}">
         {% csrf_token %}
         <p>{{ form.project|add_class:"form-control" }}</p>
         <input type="submit" value="РЕДАКТИРОВАТЬ" class="btn btn-dark">

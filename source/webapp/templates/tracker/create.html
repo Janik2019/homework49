@@ -5,14 +5,14 @@
 
 {% block menu %}
     <nav class="navbar navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="{% url 'index' %}">НА ГЛАВНУЮ</a>
+        <a class="navbar-brand" href="{% url 'webapp:index' %}">НА ГЛАВНУЮ</a>
     </nav>
 {% endblock %}
 
 
 {% block content %}
     <h1>Create Task</h1>
-    <form method="POST" action="{% url 'task_add' %}">
+    <form method="POST" action="{% url 'webapp:task_add' %}">
         {% include 'partial/task_form.html' with button_text="Create" %}
     </form>
 {% endblock %}

@@ -18,13 +18,13 @@ class StatusCreateView(LoginRequiredMixin,CreateView):
     form_class = StatusForm
 
     def get_success_url(self):
-        return reverse('status')
+        return reverse('webapp:status')
 
 
 class StatusUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'status/status_update.html'
     form_class = StatusForm
-    success_url = reverse_lazy('status')
+    success_url = reverse_lazy('webapp:status')
     model = Status
     context_object_name = 'status'
 
@@ -34,4 +34,4 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'status/status_delete.html'
     success_url = reverse_lazy('status')
     model = Status
-    context_object_name = 'status'
+    context_object_name = 'webapp:status'

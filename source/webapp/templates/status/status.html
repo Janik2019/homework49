@@ -2,8 +2,8 @@
 
 {% block menu %}
     <nav class="navbar navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="{% url 'index' %}">НА ГЛАВНУЮ</a>
-        <a class="navbar-brand" href="{% url 'status_add' %}">СОЗДАТЬ СТАТУС</a>
+        <a class="navbar-brand" href="{% url 'webapp:index' %}">НА ГЛАВНУЮ</a>
+        <a class="navbar-brand" href="{% url 'webapp:status_add' %}">СОЗДАТЬ СТАТУС</a>
         {% if user.is_authenticated %}
             <a href="{% url 'accounts:logout' %}" class="navbar-brand">ВЫХОД</a>
         {% else %}
@@ -18,8 +18,8 @@
         <div class="card mb-5">
             <div class="card-body">
                 <h2 class="card-title">{{ status.status }}</h2>
-                <a href="{% url 'status_update' status.pk %}" class="btn btn-dark">РЕДАКТИРОВАТЬ</a>
-                <a href="{% url "status_delete" status.pk %}" class="btn btn-dark">УДАЛИТЬ</a>
+                <a href="{% url 'webapp:status_update' status.pk %}" class="btn btn-dark">РЕДАКТИРОВАТЬ</a>
+                <a href="{% url "webapp:status_delete" status.pk %}" class="btn btn-dark">УДАЛИТЬ</a>
             </div>
         </div>
     {% endfor %}

@@ -5,17 +5,17 @@
 {% block menu %}
     <nav class="navbar navbar-dark bg-dark fixed-top">
 {#        <a class="navbar-brand" href="{% url 'index' %}">НА ГЛАВНУЮ</a>#}
-        <a class="navbar-brand" href="{% url 'type' %}">ТИПЫ ЗАДАЧ</a>
-        <a href="{% url 'type_update' type.pk %}" class="navbar-brand">РЕДАКТИРОВАТЬ</a>
+        <a class="navbar-brand" href="{% url 'webapp:type' %}">ТИПЫ ЗАДАЧ</a>
+        <a href="{% url 'webapp:type_update' type.pk %}" class="navbar-brand">РЕДАКТИРОВАТЬ</a>
     </nav>
 {% endblock %}
 
 
 {% block content %}
     <h1>ВЫ УВЕРЕНЫ ЧТО ХОТИТЕ УДАЛИТЬ ТИП: {{ type }}?</h1>
-    <form method="POST" action="{% url 'type_delete' type.pk %}" class="text-center">
+    <form method="POST" action="{% url 'webapp:type_delete' type.pk %}" class="text-center">
         {% csrf_token %}
         <p><input type="submit" value="УДАЛИТЬ" class="btn btn-danger"></p>
-        <p><a href="{% url 'type' %}" class="btn btn-dark">ОТМЕНА</a></p>
+        <p><a href="{% url 'webapp:type' %}" class="btn btn-dark">ОТМЕНА</a></p>
     </form>
 {% endblock %}

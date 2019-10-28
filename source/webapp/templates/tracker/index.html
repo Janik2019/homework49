@@ -2,10 +2,10 @@
 
 {% block menu %}
     <nav class="navbar navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="{% url 'task_add' %}">ДОБАВИТЬ ЗАДАЧУ</a>
-        <a class="navbar-brand" href="{% url 'type' %}">ТИПЫ ЗАДАЧ</a>
-        <a class="navbar-brand" href="{% url 'status' %}">СТАТУСЫ ЗАДАЧ</a>
-        <a class="navbar-brand" href="{% url 'project' %}">ПРОЕКТЫ</a>
+        <a class="navbar-brand" href="{% url 'webapp:task_add' %}">ДОБАВИТЬ ЗАДАЧУ</a>
+        <a class="navbar-brand" href="{% url 'webapp:type' %}">ТИПЫ ЗАДАЧ</a>
+        <a class="navbar-brand" href="{% url 'webapp:status' %}">СТАТУСЫ ЗАДАЧ</a>
+        <a class="navbar-brand" href="{% url 'webapp:project' %}">ПРОЕКТЫ</a>
         {% if user.is_authenticated %}
             <a href="{% url 'accounts:logout' %}?next={{ request.path }}" class="navbar-brand">ВЫХОД</a>
         {% else %}
@@ -23,9 +23,9 @@
             <div class="card-body">
                 <h2 class="card-title">{{ task.title }}</h2>
                 <p class="card-text">{{ task.text }}</p>
-                <a href="{% url 'task_view' task.pk %}" class="btn btn-dark">ПРОСМОТР</a>
-                <a href="{% url 'task_update' task.pk %}" class="btn btn-dark">РЕДАКТИРОВАТЬ</a>
-                <a href="{% url "task_delete" task.pk %}" class="btn btn-dark">УДАЛИТЬ</a>
+                <a href="{% url 'webapp:task_view' task.pk %}" class="btn btn-dark">ПРОСМОТР</a>
+                <a href="{% url 'webapp:task_update' task.pk %}" class="btn btn-dark">РЕДАКТИРОВАТЬ</a>
+                <a href="{% url "webapp:task_delete" task.pk %}" class="btn btn-dark">УДАЛИТЬ</a>
             </div>
         </div>
     {% endfor %}

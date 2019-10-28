@@ -4,7 +4,7 @@
 
 {% block menu %}
     <nav class="navbar navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="{% url 'index' %}">НА ГЛАВНУЮ</a>
+        <a class="navbar-brand" href="{% url 'webapp:index' %}">НА ГЛАВНУЮ</a>
 {#        <a href="{% url 'task_update' task.pk %}" class="navbar-brand">РЕДАКТИРОВАТЬ</a>#}
 {#        <a href="{% url "task_delete" task.pk %}" class="navbar-brand">УДАЛИТЬ</a>#}
     </nav>
@@ -18,7 +18,7 @@
     <h2><b>ЗАДАЧИ ДЛЯ ДАННОГО ПРОЕКТА: </b></h2>
     <p class="container_index pt-1 pb-2">
     {% for task in tasks %}
-        <h5> <a href="{% url 'task_view' task.pk %}" > {{ task.title}}</a></h5>
+        <h5> <a href="{% url 'webapp:task_view' task.pk %}" > {{ task.title}}</a></h5>
         <p><b>Дата создания задачи: </b>{{ task.created_at|date:'d.m.Y H:i:s' }}</p>
     {% empty %}
         <p>Для этого проекта пока нет задач.</p>

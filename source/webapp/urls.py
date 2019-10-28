@@ -4,7 +4,7 @@ from webapp.views import IndexView, TaskView, TaskCreateView, TaskDeleteView, Ta
     ProjectCreateView, ProjectUpdateView, ProjectDeleteView
 
 
-# app_name = 'webapp'
+app_name = 'webapp'
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
