@@ -21,3 +21,12 @@ class UserCreationForm(forms.Form):
                                   code='user_exists')
         except User.DoesNotExist:
             return username
+
+    def clean(self):
+        super().clean()
+        password_1 = self.cleaned_data['password']
+        password_2 = self.cleaned_data['password_confirm']
+        if password_1 != password_2:
+            raise ValidationError('Пароли не совпадают',code='passwords_do_not_match')
+        
+        return self.cleaned_data
