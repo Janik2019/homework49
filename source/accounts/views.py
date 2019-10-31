@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
+from django.views.generic import DetailView
 
 from accounts.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -49,3 +50,8 @@ def register_view(request):
         else:
             return render(request, 'register.html', {'form': form})
 
+
+class UserDetailView(DetailView):
+    model = User
+    template_name = 'user_detail.html'
+    context_object_name = 'user_obj'
