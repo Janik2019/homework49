@@ -37,7 +37,9 @@ class UserCreationForm(forms.Form):
 
 class UserChangeForm(forms.ModelForm):
     class Meta:
-        models = User
+        model = User
         fields = ['first_name', 'last_name', 'email']
         labels = {'first_name': 'Имя', 'last_name': 'Фамилия', 'email': 'Email'}
+
+
 

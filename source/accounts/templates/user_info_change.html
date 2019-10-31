@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ user_obj.username }}{% endblock %}
+{% block menu %}
+    {% if user_obj == request.user %}
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="{% url 'accounts:user_detail' user_obj.pk %}">Просмотр</a>
+        </nav>
+{#        <li><a href="{% url 'accounts:user_change_password' user_obj.pk %}">Change Password</a></li>#}
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <h1>Редактировать Профиль: {{ user_obj.username }}</h1>
+    <form action="{% url 'accounts:user_update' user_obj.pk %}" method="post">
+        {% include 'partial/task_form.html' with button_text="ОБНОВИТЬ" %}
+    </form>
+{% endblock %}
