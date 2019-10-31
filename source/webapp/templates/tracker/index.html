@@ -9,6 +9,7 @@
         {% if user.is_authenticated %}
             <a href="{% url 'accounts:logout' %}?next={{ request.path }}" class="navbar-brand">ВЫХОД</a>
             <a href="{% url 'accounts:user_detail' request.user.pk %}" class="navbar-brand">Привет, {{ request.user }}!</a>
+            <a class="navbar-brand" href="{% url 'accounts:users_list' %}">ПОЛЬЗОВАТЕЛИ</a>
         {% else %}
             <a class="navbar-brand" href="{% url 'accounts:register' %}">РЕГИСТРАЦИЯ</a>
             <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="navbar-brand">ВОЙТИ</a>

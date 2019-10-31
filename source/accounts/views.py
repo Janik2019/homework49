@@ -85,7 +85,7 @@ class UserChangePasswordView(UserPassesTestMixin, UpdateView):
         return reverse('accounts:login')
 
 
-# class AccountsListView(ListView):
-#     model = User
-#     template_name = 'accounts_list.html'
-#     context_object_name = 'users_obj'
+class AccountsListView(ListView):
+    model = User
+    template_name = 'accounts_list.html'
+    context_object_name = 'users_obj'

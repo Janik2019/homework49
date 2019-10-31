@@ -3,6 +3,7 @@
 {% block menu %}
     {% if user_obj == request.user %}
         <nav class="navbar navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="{% url 'webapp:index' %}">НА ГЛАВНУЮ</a>
             <a class="navbar-brand" href="{% url 'accounts:user_detail' user_obj.pk %}">ПРОСМОТР</a>
             <a class="navbar-brand" href="{% url 'accounts:user_change_password' user_obj.pk %}">СМЕНИТЬ ПАРОЛЬ</a>
         </nav>

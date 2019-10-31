@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Пользователи{% endblock %}
+
+{% block menu %}
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'webapp:index' %}">НА ГЛАВНУЮ</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'accounts:logout' %}" class="navbar-brand">ВЫХОД</a>
+        {% else %}
+            <a href="{% url 'accounts:login' %}" class="navbar-brand">ВОЙТИ</a>
+        {% endif %}
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-3">СПИСОК ПОЛЬЗОВАТЕЛЕЙ:</h1>
+    {% for user_obj in users_obj %}
+        <div class="card mb-5">
+            <div class="card-body">
+                <p class="card-title">{{ user_obj.username}}</p>
+                <a href="{% url 'accounts:user_detail' user_obj.pk %}">АККАУНТ</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
